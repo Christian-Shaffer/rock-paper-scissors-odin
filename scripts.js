@@ -10,6 +10,7 @@ function getComputerChoice () {
 
 function playRound (playerSelection = prompt('Pick'), computerSelection = getComputerChoice()) {
     const formattedPlayerSelection = playerSelection.charAt(0).toUpperCase() + playerSelection.toLowerCase().slice(1);
+    // Above line makes the first letter of the word uppercase and the rest lowercase
 
     if (moves.includes(formattedPlayerSelection) == false) {
         console.log('Spell your choice correctly! :-)');
@@ -38,7 +39,7 @@ function playRound (playerSelection = prompt('Pick'), computerSelection = getCom
     }
 }
 
-function game () {
+function game () { // Run game 5 times and then declare a winner
     for (let i = 0; i < 5; i++) {
         playRound();
     }
