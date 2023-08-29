@@ -13,6 +13,7 @@ function playRound (playerSelection = prompt('Pick'), computerSelection = getCom
 
     if (moves.includes(formattedPlayerSelection) == false) {
         console.log('Spell your choice correctly! :-)');
+        playRound();
     } else if (formattedPlayerSelection == 'Rock' && computerSelection == 'Paper') {
         console.log('computer win');
         return ++computerWinCount; 
@@ -52,5 +53,3 @@ function game () {
 
 
 game();
-
-// Exit properly on wrong spelling fix needed
