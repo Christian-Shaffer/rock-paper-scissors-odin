@@ -1,56 +1,87 @@
+const gameplay = document.querySelector('.gameplay');
+const rockButton = document.querySelector('.rock');
+const paperButton = document.querySelector('.paper');
+const scissorsButton = document.querySelector('.scissors');
+const scoreTracking = document.querySelector('.score');
+
 const moves = ['Rock', 'Paper', 'Scissors'];
 let playerWinCount = 0;
 let computerWinCount = 0;
 let tieCount = 0;
+let winText;
 
 function getComputerChoice () {
-    const choice = moves[Math.floor(Math.random() * 3)];
-    return choice;
+    const computerChoice = moves[Math.floor(Math.random() * 3)];
+    return computerChoice;
 }
 
-function playRound (playerSelection = prompt('Pick'), computerSelection = getComputerChoice()) {
-    const formattedPlayerSelection = playerSelection.charAt(0).toUpperCase() + playerSelection.toLowerCase().slice(1);
-    // Above line makes the first letter of the word uppercase and the rest lowercase
+rockButton.addEventListener('click', () => {
+    playRound('Rock')
+    checkGameCount();
+});
 
-    if (moves.includes(formattedPlayerSelection) == false) {
-        console.log('Spell your choice correctly! :-)');
-        playRound();
-    } else if (formattedPlayerSelection == 'Rock' && computerSelection == 'Paper') {
+paperButton.addEventListener('click', () => {
+    playRound('Paper');
+    checkGameCount();
+});
+
+scissorsButton.addEventListener('click', () => {
+    playRound('Scissors');
+    checkGameCount();
+})
+
+function checkGameCount() {
+    if (computerWinCount > 0 || playerWinCount > 0|| tieCount > 0) {
+        scoreTracking.textContent = `Your wins: ${playerWinCount}. Computer wins: ${computerWinCount}. Tie count: ${tieCount}.`;
+    }
+}
+
+function showWinner () {
+    const roundWinner = document.createElement('p');
+    roundWinner.textContent = `${winText}`;
+    gameplay.appendChild(roundWinner);
+}
+
+function playRound(playerChoice, computerChoice = getComputerChoice()) {
+    console.log(playerChoice, computerChoice)
+    if (playerChoice == 'Rock' && computerChoice == 'Paper') {
         console.log('computer win');
-        return ++computerWinCount; 
-    } else if (formattedPlayerSelection == 'Scissors' && computerSelection == 'Paper') {
+        winText = 'Ahh, the computer won that one.'
+        ++computerWinCount;
+        showWinner();
+    } else if (playerChoice == 'Scissors' && computerChoice == 'Paper') {
         console.log('player win');
-        return ++playerWinCount;
-    } else if (formattedPlayerSelection == 'Scissors' && computerSelection == 'Rock') {
+        winText = 'You won that one - nice!';
+        ++playerWinCount;
+        showWinner();
+    } else if (playerChoice == 'Scissors' && computerChoice == 'Rock') {
         console.log('computer win');
-        return ++computerWinCount;
-    } else if (formattedPlayerSelection == 'Paper' && computerSelection == 'Rock') {
+        winText = 'Ahh, the computer won that one.'
+        ++computerWinCount;
+        showWinner();
+    } else if (playerChoice == 'Paper' && computerChoice == 'Rock') {
         console.log('player win');
-        return ++playerWinCount;
-    } else if (formattedPlayerSelection == 'Rock' && computerSelection == 'Scissors') {
+        winText = 'You won that one - nice!';
+        ++playerWinCount;
+        showWinner();
+    } else if (playerChoice == 'Rock' && computerChoice == 'Scissors') {
         console.log('player win');
-        return ++playerWinCount;
-    } else if (formattedPlayerSelection == 'Paper' && computerSelection == 'Scissors') {
+        winText = 'You won that one - nice!';
+        ++playerWinCount;
+        showWinner();
+    } else if (playerChoice == 'Paper' && computerChoice == 'Scissors') {
         console.log('computer win');
-        return ++computerWinCount;
+        winText = 'Ahh, the computer won that one.'
+        ++computerWinCount;
+        showWinner();
     } else {
-        console.log("It's a tie");
-        return ++tieCount;
+        console.log('tie');
+        winText = 'A tie. Kinda lame, but ok!';
+        ++tieCount;
+        showWinner();
     }
 }
 
-function game () { // Run game 5 times and then declare a winner
-    for (let i = 0; i < 5; i++) {
-        playRound();
-    }
-    if (playerWinCount > computerWinCount) { 
-        let playerWon = true;
-        console.log(`You won more! Your wins: ${playerWinCount}. Computer wins: ${computerWinCount}.`);
-    } else {
-        let computerWon = true;
-        console.log(`The blasted computer won! Your wins: ${playerWinCount}. Computer wins: ${computerWinCount}. Ties: ${tieCount}.`);
-    }
-}
-
-
-game();
+// Add logic for displaying winner after 5 games
+// Add reset button
+// Add styling
