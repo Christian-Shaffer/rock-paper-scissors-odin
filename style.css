@@ -1,0 +1,62 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+    background-color: #031740;
+    
+}
+
+.header {
+    color: #EBF2F1;
+    text-align: center;
+    margin: 50px auto 0 auto;
+}
+
+.titleText {
+    margin-bottom: 30px;
+}
+
+.subtext {
+    margin-bottom: 40px;
+    color: #0785F2;
+
+}
+
+.score, .gameplay {
+    color: #27CDF2;
+    text-align: center;
+}
+
+button {
+    padding: 0px;
+    border: 0px;
+}
+
+.top-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.move-icon {
+    width: 200px;
+    height: 125px;
+    border-radius: 18px;
+    /* border: 3px solid black; */
+}
+
+.reset-container {
+    display: flex;
+    justify-content: center;
+}
+
+.reset {
+    margin-top: 30px;
+    padding: 10px 12px;
+    font-size: 22px;
+    color: #0785F2;
+    background-color: #EBF2F1;
+    border-radius: 18px;
+}
+
+/* Change top text to red when lose */
